@@ -57,3 +57,6 @@ cylc scan
 ## Example of two jobs followed by a termination step
 
 
+## More documentation
+
+https://cylc.github.io/doc/build/7.8.7/html/
