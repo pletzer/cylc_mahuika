@@ -113,9 +113,10 @@ Sometimes it is desirable to liit the number of concurrently executing jobs. The
     [[parameters]]
         procid = 0..9
 [scheduling]
-    [[[default]]]
-        # max number of concurrent jobs
-        limit = 4 
+    [[queues]]    
+        [[[default]]]
+            # max number of concurrent jobs
+            limit = 4 
     [[dependencies]]
         graph = "hello<procid> => final_step"
 [runtime]
