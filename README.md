@@ -1,5 +1,6 @@
 # cylc_mahuika
-A collection of scripts and configuration files showing how to run jobs in parallel on NeSI's cluster
+
+Documentation showing how to run parallel jobs using Cylc on NeSI's mahuika platform.
 
 ## Initial setup
 
