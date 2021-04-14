@@ -70,8 +70,65 @@ The suite.rc now is
     [[final_step]]
         script = "echo Well done!"
 ```
-Note the procid taking values 0 and 1. The hello processes are now parametrized by procid. Secondly, note that task "final_step" depends on the completion of all the hello<procid> tasks. 
+Note the procid taking values 0 and 1. The hello processes are now parametrized by `procid`. Secondly, note that task `final_step` depends on the completion of all the `hello<procid>` tasks. Naturally, the number of jobs can be increased to any number by changing line `procid = 0..1` to `procid = 0...9` for instance.  
 
+## Submitting the jobs to the SLURM queue
+
+In the above, the jobs are executed interactively. To submit the jobs to the SLURM queue, edit the above to become:
+```
+[meta]
+    title = "The cylc Hello World! suite in parallel"
+[cylc]
+    [[parameters]]
+        procid = 0..9
+[scheduling]
+    [[dependencies]]
+        graph = "hello<procid> => final_step"
+[runtime]
+    [[root]]
+        [[[job]]]
+            batch system = slurm
+            execution time limit = 01:00:00
+        [[[directives]]]
+            --export=NONE
+            --tasks=1
+            --cpus-per-task=1
+    [[hello<procid>]]
+        script = "sleep 60; echo Greetings from task ${{CYLC_TASK_PARAM_procid}}"
+    [[final_step]]
+        script = "echo Well done!"
+```
+Note the maximum execution time limit of 1 hour, 0 minute, 0 second. Additional SLURM directives are under `[[[directives]]]`. 
+
+## Limiting the number of running jobs at any time
+
+Sometimes it is desirable to liit the number of concurrently executing jobs. The following will limit the number of jobs to 4:
+```
+[meta]
+    title = "The cylc Hello World! suite in parallel"
+[cylc]
+    [[parameters]]
+        procid = 0..9
+[scheduling]
+    [[[default]]]
+        # max number of concurrent jobs
+        limit = 4 
+    [[dependencies]]
+        graph = "hello<procid> => final_step"
+[runtime]
+    [[root]]
+        [[[job]]]
+            batch system = slurm
+            execution time limit = 01:00:00
+        [[[directives]]]
+            --export=NONE
+            --tasks=1
+            --cpus-per-task=1
+    [[hello<procid>]]
+        script = "sleep 60; echo Greetings from task ${{CYLC_TASK_PARAM_procid}}"
+    [[final_step]]
+        script = "echo Well done!"
+```
 
 ## More documentation
 
