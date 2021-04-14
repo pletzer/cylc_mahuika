@@ -23,7 +23,7 @@ We'll start with a simple, "Hello World!" example.
 mkdir -p mysuites/hello
 ```
 
-Each cylc suite expects a file `suite.rc`:
+In cylc, a set of processing jobs is called a suite. Each cylc suite expects a file `suite.rc`:
 ```
 cat > mysuites/hello/suite.rc << EOF
 [meta]
