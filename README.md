@@ -53,6 +53,8 @@ Monitor the suite
 cylc scan
 ```
 
+By default, the ouput of the job will be written in `$HOME/cylc-run/hello/log/job/1/hello/01/job.out`. 
+
 ## Example of two jobs followed by a termination step
 
 The suite.rc now is
