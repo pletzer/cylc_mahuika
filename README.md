@@ -46,7 +46,7 @@ Run the suite
 ```
 cylc run hello
 ```
-Note: if you get `Host key verification failed.` you may need to first `ssh w-cylc01.maui.niwa.co.nz` and `ssh w-cylc02.maui.niwa.co.nz` to allow the connection. If you still have an issue try `cylc run --debug hello` and write down the ssh host. Try to ssh to this host, you should be able to connect to this host without typing your password.
+Note: if you get `Host key verification failed.` you may need to first `ssh w-cylc0X.maui.niwa.co.nz` where X is 1, 2, and 3 to allow the connection. If you still have an issue try `cylc run --debug hello` and write down the ssh host. Try to ssh to this host, you should be able to connect to this host without typing your password.
 
 Monitor the suite
 ```
